@@ -99,7 +99,6 @@ class ImageController extends Controller
 
         if ($imageInProducts) {
             $imageInProducts->each(function ($product) use ($image) {
-                dd($product, $image);
                 if ($product->image1 === $image->id) {
                     $product->image1 = null;
                     $product->save();
