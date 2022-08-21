@@ -52,7 +52,8 @@
                                         value="{{ $quantity}}" required>
                                     <div
                                         class="w-full bg-gray-100 bg-opacity-50 rounded text-base outline-none text-gray-700 py-1 px-3 leading-8">
-                                        {{$quantity}}</div>
+                                        {{$quantity}}
+                                    </div>
                                 </div>
                                 <div class="p-2 w-1/2 mx-auto">
                                     <div class="relative flex justify-around">
@@ -127,7 +128,7 @@
                             </div>
                             <div class="p-2 w-full flex justify-around mt-4 ">
                                 <button type="button" onclick="location.href='{{route('owner.products.index')}}'"
-                                    class=" text-black bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
+                                    class="text-black bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
                                 <button type="submit"
                                     class=" text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">登録する</button>
                             </div>
@@ -149,28 +150,28 @@
 
     <script>
         'use strict'
- const images = document.querySelectorAll('.image') 
- images.forEach(image => {
- image.addEventListener('click', function(e){ 
- const imageName = e.target.dataset.id.substr(0, 6) 
- const imageId = e.target.dataset.id.replace(imageName + '_', '') 
-// const imageName = e.target.dataset.name
-// const imageId = e.target.dataset.id2
- const imageFile = e.target.dataset.file
- const imagePath = e.target.dataset.path
- const modal = e.target.dataset.modal
- console.log(imageName, imageId, imageFile, imagePath, modal)
- document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile
- document.getElementById(imageName + '_hidden').value = imageId
- MicroModal.close(modal); 
- },)
- })
+    const images = document.querySelectorAll('.image')
+        images.forEach(image => {
+            image.addEventListener('click', function(e) {
+                const imageName = e.target.dataset.id.substr(0, 6)
+                const imageId = e.target.dataset.id.replace(imageName + '_', '')
+                // const imageName = e.target.dataset.name
+                // const imageId = e.target.dataset.id2
+                const imageFile = e.target.dataset.file
+                const imagePath = e.target.dataset.path
+                const modal = e.target.dataset.modal
+                console.log(imageName, imageId, imageFile, imagePath, modal);
+                document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile
+                document.getElementById(imageName + '_hidden').value = imageId
+                MicroModal.close(modal);
+            }, )
+        })
 
-        function deletePost(e){
+        function deletePost(e) {
             'use strict';
             console.log(e);
             console.log(e.dataset.id)
-            if (confirm('本当に削除してもいいですか？')){
+            if (confirm('本当に削除してもいいですか？')) {
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }
