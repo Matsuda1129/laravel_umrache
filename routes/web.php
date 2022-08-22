@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComponentTestController;
 use App\Http\Controllers\LifeCycleTestController;
+use App\Http\Controllers\Owner\ShopController;
 use App\Http\Controllers\User\ItemController;
 
 
@@ -23,6 +24,7 @@ Route::get('/', function () {
 
 Route::middleware('auth:users')->group(function () {
     Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    Route::get('show/{item}', [ItemController::class, 'show'])->name('items.show');
 });
 
 // Route::get('/dashboard', function () {
