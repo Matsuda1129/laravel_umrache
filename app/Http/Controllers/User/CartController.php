@@ -69,27 +69,10 @@ class CartController extends Controller
             $quantity = '';
             $quantity = Stock::where('product_id', $product->id)->sum('quantity');
 
-
-            // $productStripe = \Stripe\Product::create([
-            //     'name' => $product->name,
-            //     'description' =>  $product->information,
-            //     // 'images' => '',
-            // ]);
-
-            // $priceStripe = \Stripe\Price::create([
-            //     'product' => $product->id,
-            //     'unit_amount' => $product->price,
-            //     'currency' => 'jpy',
-            // ]);
-
             if ($product->pivot->quantity > $quantity) {
                 return view('user.cart');
             } else {
                 $lineItem = [
-                    // 'name' => $product->name,
-                    // 'description' => $product->information,
-                    // 'amount' => $product->price,
-                    // 'currency' => 'jpy',
                     'quantity' => $product->pivot->quantity,
                     'price_data' => [
                         'currency' => 'jpy',
@@ -119,11 +102,17 @@ class CartController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => [$lineItems],
             'mode' => 'payment',
-            'success_url' => route('user.items.index'),
+            'success_url' => route('user.cart.success'),
             'cancel_url' => route('user.cart.index'),
         ]);
 
         $publicKey = env('STRIPE_PUBLIC_KEY');
         return view('user.checkout', compact('session', 'publicKey'));
+    }
+
+    public function success()
+    {
+        Cart::where('user_id', Auth::id())->delete();
+        return redirect()->route('user.items.index');
     }
 }
