@@ -959,6 +959,10 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -1023,6 +1027,15 @@ select {
 .ml-0 {
   margin-left: 0px;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.mr-4 {
+  margin-right: 1rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1035,17 +1048,11 @@ select {
 .mr-3 {
   margin-right: 0.75rem;
 }
-.ml-auto {
-  margin-left: auto;
-}
 .mt-6 {
   margin-top: 1.5rem;
 }
 .mb-8 {
   margin-bottom: 2rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .block {
   display: block;
@@ -1077,20 +1084,20 @@ select {
 .h-16 {
   height: 4rem;
 }
+.h-6 {
+  height: 1.5rem;
+}
 .h-10 {
   height: 2.5rem;
 }
 .h-4 {
   height: 1rem;
 }
-.h-6 {
-  height: 1.5rem;
+.h-40 {
+  height: 10rem;
 }
 .h-1 {
   height: 0.25rem;
-}
-.h-40 {
-  height: 10rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1119,14 +1126,17 @@ select {
 .w-48 {
   width: 12rem;
 }
+.w-6 {
+  width: 1.5rem;
+}
 .w-12 {
   width: 3rem;
 }
 .w-4 {
   width: 1rem;
 }
-.w-6 {
-  width: 1.5rem;
+.w-40 {
+  width: 10rem;
 }
 .w-32 {
   width: 8rem;
@@ -1139,9 +1149,6 @@ select {
 }
 .w-1 {
   width: 0.25rem;
-}
-.w-40 {
-  width: 10rem;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -1232,6 +1239,11 @@ select {
 }
 .justify-around {
   justify-content: space-around;
+}
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1327,6 +1339,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
+.border-gray-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+}
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
@@ -1370,9 +1386,9 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
-.bg-gray-500 {
+.bg-gray-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-blue-400 {
   --tw-bg-opacity: 1;
@@ -1396,10 +1412,6 @@ select {
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
-}
-.bg-gray-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -1804,9 +1816,9 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
-.hover\:bg-gray-600:hover {
+.hover\:bg-gray-500:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
@@ -1819,10 +1831,6 @@ select {
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
-.hover\:bg-gray-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
@@ -2079,18 +2087,6 @@ select {
     min-height: 100vh;
   }
 
-  .md\:w-2\/3 {
-    width: 66.666667%;
-  }
-
-  .md\:w-1\/2 {
-    width: 50%;
-  }
-
-  .md\:w-1\/12 {
-    width: 8.333333%;
-  }
-
   .md\:w-3\/12 {
     width: 25%;
   }
@@ -2101,6 +2097,14 @@ select {
 
   .md\:w-2\/12 {
     width: 16.666667%;
+  }
+
+  .md\:w-2\/3 {
+    width: 66.666667%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
   }
 
   .md\:grid-cols-2 {
@@ -2148,12 +2152,24 @@ select {
 }
 @media (min-width: 1024px) {
 
+  .lg\:mb-0 {
+    margin-bottom: 0px;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:w-2\/3 {
     width: 66.666667%;
   }
 
   .lg\:w-1\/2 {
     width: 50%;
+  }
+
+  .lg\:justify-around {
+    justify-content: space-around;
   }
 
   .lg\:px-8 {
