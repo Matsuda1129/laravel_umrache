@@ -9,13 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    @if (count($products) > 0)
-                    @foreach ($products as $product)
+                    @if (count($products ?? '') > 0)
+                    @foreach ($products ?? '' as $product)
                     <div class="md:flex md:items-center mb-2">
                         <div class="md:w-3/12"> @If($product->imageFirst->filename !== null)
-                            <img src="{{ asset('storage/products/' . $product->imageFirst->filename) }}" alt="">
+                            <img src="{{ asset('storage/products/' . $product->imageFirst->filename) }}" alt=""/>
                             @else
-                            <img src="" alt="">
+                            <img src="" alt=""/>
                             @endif
                         </div>
                         <div class="md:w-4/12 md:ml-2">{{ $product->name }}</div>
@@ -38,6 +38,14 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="my-2">
+                        小計: {{ number_format($totalPrice)}}
+                        <span class="text-sm text-gray-700">円(税込)</span>
+                    </div>
+                    <div>
+                        <button onclick="location.href='{{ route('user.cart.checkout')}}'" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">購入する
+                        </button>
+                    </div>
                     @else
                     カートに商品が入っていません。
                     @endif

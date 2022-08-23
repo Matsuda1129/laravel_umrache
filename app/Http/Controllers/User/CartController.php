@@ -63,19 +63,42 @@ class CartController extends Controller
 
         $lineItems = [];
 
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
         foreach ($products as $product) {
             $quantity = '';
             $quantity = Stock::where('product_id', $product->id)->sum('quantity');
 
+
+            // $productStripe = \Stripe\Product::create([
+            //     'name' => $product->name,
+            //     'description' =>  $product->information,
+            //     // 'images' => '',
+            // ]);
+
+            // $priceStripe = \Stripe\Price::create([
+            //     'product' => $product->id,
+            //     'unit_amount' => $product->price,
+            //     'currency' => 'jpy',
+            // ]);
+
             if ($product->pivot->quantity > $quantity) {
-                return view('user.cart.index');
+                return view('user.cart');
             } else {
                 $lineItem = [
-                    'name' => $product->name,
-                    'description' => $product->information,
-                    'amount' => $product->price,
-                    'currency' => 'jpy',
+                    // 'name' => $product->name,
+                    // 'description' => $product->information,
+                    // 'amount' => $product->price,
+                    // 'currency' => 'jpy',
                     'quantity' => $product->pivot->quantity,
+                    'price_data' => [
+                        'currency' => 'jpy',
+                        'unit_amount' => $product->price,
+                        'product_data' => [
+                            'name' =>  $product->name,
+                            'description' => $product->information,
+                        ],
+                    ]
 
                 ];
                 array_push($lineItems, $lineItem);
@@ -91,9 +114,8 @@ class CartController extends Controller
             ]);
         }
 
-        dd('test');
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        $session = \Stripe\Checkout::Session . create([
+
+        $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [$lineItems],
             'mode' => 'payment',
