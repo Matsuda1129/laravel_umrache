@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use App\Services\CartService;
 
 
 class CartController extends Controller
@@ -15,6 +16,10 @@ class CartController extends Controller
 
     public function index()
     {
+        ////
+        $items = Cart::where('user_id', Auth::id())->get();
+        $products = CartService::getItemsInCart($items);
+        ////
         $user = User::findOrFail(Auth::id());
         $products = $user->products;
         $totalPrice = 0;
@@ -27,6 +32,7 @@ class CartController extends Controller
 
         return view('user.cart', compact('products', 'totalPrice'));
     }
+
     public function add(Request $request)
     {
         $itemInCart = Cart::where('product_id', $request->product_id)
