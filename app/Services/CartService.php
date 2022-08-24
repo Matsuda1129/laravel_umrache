@@ -24,7 +24,6 @@ class CartService
                 ->select('quantity')->get()->toArray(); // 在庫数の配列
             $result = array_merge($product[0], $ownerInfo, $quantity[0]); // 配列の結合
             array_push($products, $result); //配列に追加
-            dd($result);
         }
 
         return $products;
